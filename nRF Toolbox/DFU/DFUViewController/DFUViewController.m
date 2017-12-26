@@ -151,7 +151,10 @@
     
     // To start the DFU operation the DFUServiceInitiator must be used
     DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager: centralManager target:selectedPeripheral];
-    [initiator withFirmwareFile:selectedFirmware];
+    /** 旧方法 */
+    //[initiator withFirmwareFile:selectedFirmware];
+    /** 新方法 */
+    initiator = [initiator withFirmware:selectedFirmware];
     initiator.forceDfu = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_force_dfu"] boolValue];
     initiator.packetReceiptNotificationParameter = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_number_of_packets"] intValue];
     initiator.logger = self;
