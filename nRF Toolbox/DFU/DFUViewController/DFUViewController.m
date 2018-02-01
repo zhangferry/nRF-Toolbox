@@ -84,6 +84,7 @@
     [super viewDidLoad];    
     // Rotate the vertical label
     self.verticalLabel.transform = CGAffineTransformRotate(CGAffineTransformMakeTranslation(-145.0f, 0.0f), (float)(-M_PI / 2));
+   
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -92,7 +93,9 @@
     //if DFU peripheral is connected and user press Back button then disconnect it
     if ([self isMovingFromParentViewController] && controller != nil)
     {
-        [controller abort];
+        if (![controller abort]) {
+            [self logWith:LogLevelApplication message:@"Aborting DFU process failed"];
+        }
     }
 }
 
@@ -160,6 +163,7 @@
     initiator.logger = self;
     initiator.delegate = self;
     initiator.progressDelegate = self;
+    initiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = YES;
     // initiator.peripheralSelector = ... // the default selector is used
     
     controller = [initiator start];
@@ -284,7 +288,7 @@
     NSLog(@"%ld: %@", (long) level, message);
 }
 
--(void)didStateChangedTo:(enum DFUState)state
+-(void)dfuStateDidChangeTo:(enum DFUState)state
 {
     switch (state) {
         case DFUStateConnecting:
@@ -323,17 +327,15 @@
     }
 }
 
--(void)onUploadProgress:(NSInteger)part totalParts:(NSInteger)totalParts progress:(NSInteger)percentage
-currentSpeedBytesPerSecond:(double)speed avgSpeedBytesPerSecond:(double)avgSpeed
-{
-    // NSLog(@"Progress: %ld%% (part %ld/%ld). Speed: %f bps, Avg speed: %f bps", (long) percentage, (long) part, (long) totalParts, speed, avgSpeed);
+- (void)dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond{
     
-    progress.progress = (float) percentage / 100.0f;
-    progressLabel.text = [NSString stringWithFormat:@"%ld%% (%ld/%ld)", (long) percentage, (long) part, (long) totalParts];
+    NSLog(@"part:%ld, totalParts:%ld, progress:%ld, currentSpeedBytesPerSecond:%f, avgSpeedBytesPerSecond:%f", part, totalParts, progress, currentSpeedBytesPerSecond, avgSpeedBytesPerSecond);
+    //打印更新进度
+    self.progress.progress = progress / 100.0;
+    self.progressLabel.text = [NSString stringWithFormat:@"%ld%% (%ld/%ld)",progress,part,totalParts];
 }
-
--(void)didErrorOccur:(enum DFUError)error withMessage:(NSString *)message
-{
+- (void)dfuError:(enum DFUError)error didOccurWithMessage:(NSString * _Nonnull)message{
+    
     NSLog(@"Error %ld: %@", (long) error, message);
     
     [Utility showAlert:message];
@@ -409,6 +411,12 @@ currentSpeedBytesPerSecond:(double)speed avgSpeedBytesPerSecond:(double)avgSpeed
                 break;
             case DFUFirmwareTypeApplication:
                 fileType.text = @"Application";
+                break;
+            case DFUFirmwareTypeSoftdeviceBootloader:
+                fileType.text = @"SD + BL";
+                break;
+            case DFUFirmwareTypeSoftdeviceBootloaderApplication:
+                fileType.text = @"APP + SD + BL";
                 break;
         }
     }else{

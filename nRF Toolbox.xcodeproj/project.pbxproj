@@ -877,7 +877,7 @@
 				ORGANIZATIONNAME = "Nordic Semiconductor";
 				TargetAttributes = {
 					5217F3E11859EE0000F2D5BB = {
-						DevelopmentTeam = X36232M6Y9;
+						DevelopmentTeam = 75VJNJXCBU;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1128,7 +1128,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X36232M6Y9;
+				DEVELOPMENT_TEAM = 75VJNJXCBU;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1172,7 +1172,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X36232M6Y9;
+				DEVELOPMENT_TEAM = 75VJNJXCBU;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
