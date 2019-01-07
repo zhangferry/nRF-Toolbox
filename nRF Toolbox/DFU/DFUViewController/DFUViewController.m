@@ -81,10 +81,10 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
     // Rotate the vertical label
     self.verticalLabel.transform = CGAffineTransformRotate(CGAffineTransformMakeTranslation(-145.0f, 0.0f), (float)(-M_PI / 2));
-   
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -106,7 +106,7 @@
         // Pause the upload process. Pausing is possible only during upload, so if the device was still connecting or sending some metadata it will continue to do so,
         // but it will pause just before seding the data.
         [controller pause];
-        
+
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Abort?" message:@"Do you want to abort?" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction* abort = [UIAlertAction
                                 actionWithTitle:@"Abort"
@@ -116,7 +116,7 @@
                                     // Abort upload process
                                     [controller abort];
                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                    
+
                                 }];
         UIAlertAction* cancel = [UIAlertAction
                                  actionWithTitle:@"Cancel"
@@ -127,7 +127,7 @@
                                      [controller resume];
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                  }];
-        
+
         [alert addAction:abort];
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
@@ -149,19 +149,19 @@
     progressLabel.hidden = NO;
     uploadStatus.hidden = NO;
     uploadButton.enabled = NO;
-    
+
     [self registerObservers];
-    
+
     // To start the DFU operation the DFUServiceInitiator must be used
-    
+
     //DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager: centralManager target:selectedPeripheral]; //deprecated
-    
+
     dispatch_queue_t queue = dispatch_queue_create("com.nRF.customQueue", NULL);
     DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithQueue:queue]; //recommend
 
     //[initiator withFirmwareFile:selectedFirmware]; //deprecated
     initiator = [initiator withFirmware:selectedFirmware]; //recommend
-    
+
     initiator.forceDfu = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_force_dfu"] boolValue];
     initiator.packetReceiptNotificationParameter = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_number_of_packets"] intValue];
     initiator.logger = self;
@@ -169,7 +169,7 @@
     initiator.progressDelegate = self;
     initiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = YES;
     // initiator.peripheralSelector = ... // the default selector is used
-    
+
     //controller = [initiator start];  deprecated
     controller = [initiator startWithTarget:selectedPeripheral];  //recommend
     [uploadButton setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -194,7 +194,7 @@
         appFilesVC.fileDelegate = self;
         UserFilesViewController* userFilesVC = [barController.viewControllers lastObject];
         userFilesVC.fileDelegate = self;
-        
+
         if (selectedFileUrl)
         {
             NSString *path = [selectedFileUrl path];
@@ -208,7 +208,7 @@
 {
     controller = nil;
     selectedPeripheral = nil;
-    
+
     deviceName.text = @"DEFAULT DFU";
     uploadStatus.text = nil;
     uploadStatus.hidden = YES;
@@ -216,11 +216,11 @@
     progress.hidden = YES;
     progressLabel.text = nil;
     progressLabel.hidden = YES;
-    
+
     [uploadButton setTitle:@"Upload" forState:UIControlStateNormal];
     [self enableOrDisableUploadButton];
     [self enableOtherButtons];
-    
+
     [self unregisterObservers];
 }
 
@@ -333,16 +333,16 @@
 }
 
 - (void)dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond{
-    
+
     NSLog(@"part:%ld, totalParts:%ld, progress:%ld, currentSpeedBytesPerSecond:%f, avgSpeedBytesPerSecond:%f", part, totalParts, progress, currentSpeedBytesPerSecond, avgSpeedBytesPerSecond);
     //打印更新进度
     self.progress.progress = progress / 100.0;
     self.progressLabel.text = [NSString stringWithFormat:@"%ld%% (%ld/%ld)",progress,part,totalParts];
 }
 - (void)dfuError:(enum DFUError)error didOccurWithMessage:(NSString * _Nonnull)message{
-    
+
     NSLog(@"Error %ld: %@", (long) error, message);
-    
+
     [Utility showAlert:message];
     if ([Utility isApplicationStateInactiveORBackground])
     {
@@ -361,14 +361,14 @@
     fileName.text = nil;
     fileSize.text = nil;
     fileType.text = nil;
-    
+
     NSString *fileNameComponent = url.lastPathComponent;
     NSString *extension = [[fileNameComponent pathExtension] lowercaseString];
-    
+
     if ([extension isEqualToString:@"zip"])
     {
         selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
-        
+
         if (selectedFirmware && selectedFirmware.fileName)
         {
             fileName.text = selectedFirmware.fileName;
@@ -397,16 +397,16 @@
 
 -(void)onFileTypeSelected:(DFUFirmwareType)type
 {
-    
+
     selectedFirmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:selectedFileUrl urlToDatFile:nil type:type];
 //    selectedFirmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:selectedFileUrl urlToDatFile:selectedFileDataUrl type:type];
-    
+
     if (selectedFirmware && selectedFirmware.fileName)
     {
         fileName.text = selectedFirmware.fileName;
         NSData *content = [[NSData alloc] initWithContentsOfURL:selectedFileUrl];
         fileSize.text = [NSString stringWithFormat:@"%lu bytes", (long) content.length];
-        
+
         switch (type) {
             case DFUFirmwareTypeSoftdevice:
                 fileType.text = @"Softdevice";
@@ -425,7 +425,7 @@
                 break;
         }
     }else{
-        
+
         selectedFirmware = nil;
         selectedFileUrl = nil;
         [Utility showAlert:@"Selected file is not supported."];
