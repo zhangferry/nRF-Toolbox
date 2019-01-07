@@ -5,6 +5,12 @@
 
 2018-2-1
 
+* 更新了[iOS-DFU-Library](https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library)，目前版本是4.2.1。
+* 在Xcode10.1上跑了下，没有问题。
+* 把一些官方不再推荐的方法换成了推荐方法。
+
+2019-1-7
+
 
 
 # IOS-nRF-Toolbox
