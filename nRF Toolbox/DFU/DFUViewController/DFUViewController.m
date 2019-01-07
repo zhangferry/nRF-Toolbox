@@ -158,10 +158,10 @@
     
     dispatch_queue_t queue = dispatch_queue_create("com.nRF.customQueue", NULL);
     DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithQueue:queue]; //recommend
-    /** 旧方法 */
-    //[initiator withFirmwareFile:selectedFirmware];
-    /** 新方法 */
-    initiator = [initiator withFirmware:selectedFirmware];
+
+    //[initiator withFirmwareFile:selectedFirmware]; //deprecated
+    initiator = [initiator withFirmware:selectedFirmware]; //recommend
+    
     initiator.forceDfu = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_force_dfu"] boolValue];
     initiator.packetReceiptNotificationParameter = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_number_of_packets"] intValue];
     initiator.logger = self;
