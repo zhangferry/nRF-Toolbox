@@ -68,10 +68,8 @@
 		7EE669221983C7DD004680F0 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE6691D1983C7DD004680F0 /* SSZipArchive.m */; };
 		8E6055281E01375600088CA8 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6055271E01375600088CA8 /* libz.1.tbd */; };
 		8E94C2151DFF9BFE00B93A43 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E94C2141DFF9BFE00B93A43 /* libCorePlot-CocoaTouch.a */; };
-		8E97373421E3504B00C7B41D /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E97373221E34F8B00C7B41D /* Zip.framework */; };
-		8E97373521E3504B00C7B41D /* Zip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E97373221E34F8B00C7B41D /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E97373621E3506100C7B41D /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E97373021E34F8200C7B41D /* iOSDFULibrary.framework */; };
-		8E97373721E3506100C7B41D /* iOSDFULibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E97373021E34F8200C7B41D /* iOSDFULibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EE4CF6522DABF7E007D605B /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE4CF6422DABF7E007D605B /* iOSDFULibrary.framework */; };
+		8EE4CF6722DABF8D007D605B /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE4CF6622DABF8D007D605B /* ZIPFoundation.framework */; };
 		A80462591AD670480074F116 /* AppUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A80462581AD670480074F116 /* AppUtilities.m */; };
 		A83894521B17731D005B738D /* EditPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A83894511B17731D005B738D /* EditPopupViewController.m */; };
 		A85667D91B1F3C1A004A6D3C /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85667D81B1F3C1A004A6D3C /* LogViewController.m */; };
@@ -96,8 +94,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8E97373721E3506100C7B41D /* iOSDFULibrary.framework in Embed Frameworks */,
-				8E97373521E3504B00C7B41D /* Zip.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,8 +288,8 @@
 		8E6055271E01375600088CA8 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		8E94C2141DFF9BFE00B93A43 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		8E94C2161DFFCA8300B93A43 /* nRF Toolbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nRF Toolbox-Bridging-Header.h"; path = "Utilities/nRF Toolbox-Bridging-Header.h"; sourceTree = "<group>"; };
-		8E97373021E34F8200C7B41D /* iOSDFULibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSDFULibrary.framework; sourceTree = "<group>"; };
-		8E97373221E34F8B00C7B41D /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Zip.framework; sourceTree = "<group>"; };
+		8EE4CF6422DABF7E007D605B /* iOSDFULibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSDFULibrary.framework; path = Carthage/Build/iOS/iOSDFULibrary.framework; sourceTree = "<group>"; };
+		8EE4CF6622DABF8D007D605B /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = Carthage/Build/iOS/ZIPFoundation.framework; sourceTree = "<group>"; };
 		A80462571AD670480074F116 /* AppUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtilities.h; sourceTree = "<group>"; };
 		A80462581AD670480074F116 /* AppUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtilities.m; sourceTree = "<group>"; };
 		A83894501B17731D005B738D /* EditPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPopupViewController.h; sourceTree = "<group>"; };
@@ -311,16 +307,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE4CF6722DABF8D007D605B /* ZIPFoundation.framework in Frameworks */,
+				8EE4CF6522DABF7E007D605B /* iOSDFULibrary.framework in Frameworks */,
 				8E6055281E01375600088CA8 /* libz.1.tbd in Frameworks */,
 				52BDCB191C3FD31F00E2680F /* Accelerate.framework in Frameworks */,
 				52BDCBBE1C3FD86900E2680F /* QuartzCore.framework in Frameworks */,
-				8E97373421E3504B00C7B41D /* Zip.framework in Frameworks */,
 				5217F41B1859EEF400F2D5BB /* CoreBluetooth.framework in Frameworks */,
 				5217F3E81859EE0000F2D5BB /* CoreGraphics.framework in Frameworks */,
 				5217F3EA1859EE0000F2D5BB /* UIKit.framework in Frameworks */,
 				5217F3E61859EE0000F2D5BB /* Foundation.framework in Frameworks */,
 				8E94C2151DFF9BFE00B93A43 /* libCorePlot-CocoaTouch.a in Frameworks */,
-				8E97373621E3506100C7B41D /* iOSDFULibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,9 +371,9 @@
 		5217F3E41859EE0000F2D5BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EE4CF6622DABF8D007D605B /* ZIPFoundation.framework */,
+				8EE4CF6422DABF7E007D605B /* iOSDFULibrary.framework */,
 				8E6055271E01375600088CA8 /* libz.1.tbd */,
-				8E97373221E34F8B00C7B41D /* Zip.framework */,
-				8E97373021E34F8200C7B41D /* iOSDFULibrary.framework */,
 				52BDCBBD1C3FD86900E2680F /* QuartzCore.framework */,
 				52BDCB181C3FD31F00E2680F /* Accelerate.framework */,
 				5217F41A1859EEF400F2D5BB /* CoreBluetooth.framework */,
@@ -835,6 +831,7 @@
 				5217F3DF1859EE0000F2D5BB /* Frameworks */,
 				5217F3E01859EE0000F2D5BB /* Resources */,
 				52704A821C7237CE00ED2B19 /* Embed Frameworks */,
+				8EE4CF6822DABFAB007D605B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -892,6 +889,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -934,6 +932,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8EE4CF6822DABFAB007D605B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/iOSDFULibrary.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ZIPFoundation.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5217F3DE1859EE0000F2D5BB /* Sources */ = {
@@ -1132,6 +1152,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/iOSDFULibrary",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Zip",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nRF Toolbox/nRF Toolbox-Prefix.pch";
@@ -1176,6 +1197,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/iOSDFULibrary",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Zip",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nRF Toolbox/nRF Toolbox-Prefix.pch";

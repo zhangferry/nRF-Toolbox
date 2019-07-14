@@ -153,13 +153,14 @@
     [self registerObservers];
 
     // To start the DFU operation the DFUServiceInitiator must be used
-
-    //DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager: centralManager target:selectedPeripheral]; //deprecated
-
     dispatch_queue_t queue = dispatch_queue_create("com.nRF.customQueue", NULL);
-    DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithQueue:queue]; //recommend
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
 
-    //[initiator withFirmwareFile:selectedFirmware]; //deprecated
+    DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithQueue:queue
+                                                                  delegateQueue:mainQueue
+                                                                  progressQueue:mainQueue
+                                                                    loggerQueue:mainQueue];
+
     initiator = [initiator withFirmware:selectedFirmware]; //recommend
 
     initiator.forceDfu = [[[NSUserDefaults standardUserDefaults] valueForKey:@"dfu_force_dfu"] boolValue];
