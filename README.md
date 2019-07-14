@@ -11,7 +11,21 @@
 
 2019-1-7
 
+* 更新了iOS-DFU-Library，目前版本是4.4.2
+* 在Xcode10.2.1验证过
 
+针对之前常出的这种问题：
+```ruby
+dyld: Library not loaded: @rpath/libswiftCore.dylib
+Referenced from: /private/var/containers/Bundle/Application/CDB2F4ED-C49C-4303-BE1F-5D9D990380F3/nRF Toolbox.app/Frameworks/Zip.framework/Zip
+Reason: image not found
+```
+均是由Swift库版本不一致引起的，`iOSDFULibrary`目前已经支持到Swift 5，所以我们应该升级一下版本。为了方便使用，我将`Carthage`集成到了项目里，如果以后需要再升级，更新`Cartfile`文件里的版本号，执行更新命令：
+```
+carthage update --platform iOS
+```
+
+2019-7-14
 
 # IOS-nRF-Toolbox
 
