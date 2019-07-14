@@ -1,16 +1,18 @@
 # 提示
+2018-2-1
 
 感谢大家的反馈，这个是nRF-Toolbox停更OC版本之前的项目，3.0版本，最新的nRF是4.4.4，我给挪过来了。其中用于DFU升级的库我前几天更新了下，是较新的版本，但仍可能会存在隐藏问题。
 这个项目的目的是为不熟悉swift的开发者提供一个参考，但我也能力有限，另一方面感觉也没有必要，持续跟进对应swift版本的更新。所以遇到开发问题，应该首先考虑版本差异，其次参考官网的做法[IOS-nRF-Toolbox](https://github.com/NordicSemiconductor/IOS-nRF-Toolbox)，谢谢大家。
 
-2018-2-1
+---
+2019-1-7
 
 * 更新了[iOS-DFU-Library](https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library)，目前版本是4.2.1。
 * 在Xcode10.1上跑了下，没有问题。
 * 把一些官方不再推荐的方法换成了推荐方法。
 
-2019-1-7
-
+---
+2019-7-14
 * 更新了iOS-DFU-Library，目前版本是4.4.2
 * 在Xcode10.2.1验证过
 
@@ -25,7 +27,7 @@ Reason: image not found
 carthage update --platform iOS
 ```
 
-2019-7-14
+
 
 # IOS-nRF-Toolbox
 
